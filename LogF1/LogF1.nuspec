@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <metadata>
+    <id>LogF1</id>
+    <version>1.0.0.0</version>
+    <title>LogF1</title>
+    <authors>test</authors>
+    <owners>test</owners>
+    <description>test</description>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <developmentDependency>false</developmentDependency>
+    <copyright>Copyright ©  2019</copyright>
+    <frameworkAssemblies />
+    <dependencies />
+  </metadata>
+  <files>
+    <file src="C:\Users\benoit\documents\visual studio 2015\Projects\LogF1\LogF1\bin\Debug\LogF1.dll" target="lib\net46" />
+  </files>
+</package>
