@@ -3,16 +3,18 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using LogF1.Logger;
 using Xunit;
-
+[assembly: CollectionBehavior(DisableTestParallelization = true)]
 namespace UnitTestProject
 {
+    [Collection("Sequential")]
     public class UnitTest1
     {
         [Fact]
         public void TestMethod1()
         {
-            LoggerManager.Path = "c:/temp/log.txt";
-            ILogger<TestLogger> logger=LoggerManager.GetInstance<TestLogger>();
+            LoggerManager.Path = "c:/temp/log_1.txt";
+            LoggerManager.ChangeOutPutType(LOGGER_OutputType.TXT);
+            ILogger<ServiceTest> logger=LoggerManager.GetInstance<ServiceTest>();
 
 
             for (int i = 0; i < 100; i++)
@@ -31,5 +33,11 @@ namespace UnitTestProject
 
 
         }
+
+
+
+
+
+
     }
 }

@@ -2,7 +2,7 @@
 
 namespace LogF1.Logger
 {
-    public interface ILogger<T> where T : class 
+    public interface ILogger<T>  
     {
 
         void Warning(string description);

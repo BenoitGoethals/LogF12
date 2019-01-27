@@ -12,11 +12,11 @@ namespace LogF1.Logger
     {
 
 
-        private Action<Type, TypeMessage, string> addMessage;
+        private Action<Message> addMessage;
         private Func<Type, TypeMessage, List<string>> messages;
 
 
-        public Logger(Action<Type, TypeMessage, string> addMessage, Func<Type, TypeMessage, List<string>> messages)
+        public Logger(Action<Message> addMessage, Func<Type, TypeMessage, List<string>> messages)
         {
             this.addMessage = addMessage;
             this.messages = messages;
@@ -49,9 +49,18 @@ namespace LogF1.Logger
         }
 
 
-        private void AddNewMessage(TypeMessage typeMessage, string description)
+        private void AddNewMessage(TypeMessage typeM, string description)
         {
-            addMessage?.Invoke(typeof(T), typeMessage, description);
+            Message message = new Message()
+            {
+                message = description,
+                typeMessage = typeM,
+                type = (typeof(T))
+
+
+
+            };
+            addMessage?.Invoke(message);
 
         }
     }

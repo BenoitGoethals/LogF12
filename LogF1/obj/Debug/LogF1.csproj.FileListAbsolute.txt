@@ -1,0 +1,5 @@
+c:\Users\benoit\Documents\Visual Studio 2015\Projects\LogF1\LogF1\bin\Debug\LogF1.dll
+c:\Users\benoit\Documents\Visual Studio 2015\Projects\LogF1\LogF1\bin\Debug\LogF1.pdb
+c:\Users\benoit\Documents\Visual Studio 2015\Projects\LogF1\LogF1\obj\Debug\LogF1.dll
+c:\Users\benoit\Documents\Visual Studio 2015\Projects\LogF1\LogF1\obj\Debug\LogF1.pdb
+C:\Users\benoit\documents\visual studio 2015\Projects\LogF1\LogF1\obj\Debug\LogF1.csprojResolveAssemblyReference.cache

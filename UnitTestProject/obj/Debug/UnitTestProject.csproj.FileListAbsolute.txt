@@ -1,0 +1,17 @@
+c:\Users\benoit\Documents\Visual Studio 2015\Projects\LogF1\UnitTestProject\bin\Debug\xunit.abstractions.dll
+c:\Users\benoit\Documents\Visual Studio 2015\Projects\LogF1\UnitTestProject\bin\Debug\xunit.runner.visualstudio.testadapter.dll
+c:\Users\benoit\Documents\Visual Studio 2015\Projects\LogF1\UnitTestProject\bin\Debug\xunit.runner.utility.desktop.dll
+c:\Users\benoit\Documents\Visual Studio 2015\Projects\LogF1\UnitTestProject\bin\Debug\xunit.execution.desktop.dll
+c:\Users\benoit\Documents\Visual Studio 2015\Projects\LogF1\UnitTestProject\bin\Debug\UnitTestProject.dll
+c:\Users\benoit\Documents\Visual Studio 2015\Projects\LogF1\UnitTestProject\bin\Debug\UnitTestProject.pdb
+c:\Users\benoit\Documents\Visual Studio 2015\Projects\LogF1\UnitTestProject\bin\Debug\xunit.assert.dll
+c:\Users\benoit\Documents\Visual Studio 2015\Projects\LogF1\UnitTestProject\bin\Debug\xunit.core.dll
+c:\Users\benoit\Documents\Visual Studio 2015\Projects\LogF1\UnitTestProject\bin\Debug\xunit.assert.pdb
+c:\Users\benoit\Documents\Visual Studio 2015\Projects\LogF1\UnitTestProject\bin\Debug\xunit.assert.xml
+c:\Users\benoit\Documents\Visual Studio 2015\Projects\LogF1\UnitTestProject\bin\Debug\xunit.core.pdb
+c:\Users\benoit\Documents\Visual Studio 2015\Projects\LogF1\UnitTestProject\bin\Debug\xunit.core.xml
+c:\Users\benoit\Documents\Visual Studio 2015\Projects\LogF1\UnitTestProject\obj\Debug\UnitTestProject.csprojResolveAssemblyReference.cache
+c:\Users\benoit\Documents\Visual Studio 2015\Projects\LogF1\UnitTestProject\obj\Debug\UnitTestProject.dll
+c:\Users\benoit\Documents\Visual Studio 2015\Projects\LogF1\UnitTestProject\obj\Debug\UnitTestProject.pdb
+c:\Users\benoit\Documents\Visual Studio 2015\Projects\LogF1\UnitTestProject\bin\Debug\LogF1.dll
+c:\Users\benoit\Documents\Visual Studio 2015\Projects\LogF1\UnitTestProject\bin\Debug\LogF1.pdb
