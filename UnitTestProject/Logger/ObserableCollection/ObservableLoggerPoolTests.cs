@@ -20,9 +20,9 @@ namespace LogF1.Logger.ObserableCollection.Tests
             
             observableLoggerPool.AddMessage(new Message() {
 
-                message = "test",
-                type = typeof(ServiceTest),
-                typeMessage = TypeMessage.Error
+                messageData = "test",
+                Type = typeof(ServiceTest),
+                TypeMessage = TypeMessage.Error
 
             });
             Assert.Equal(1, observableLoggerPool.Messages(typeof(ServiceTest), TypeMessage.Error).Count);

@@ -13,11 +13,11 @@ namespace LogF1.Logger
 
         }
 
-        public Type type { get; set; }
+        public Type Type { get; set; }
 
-        public TypeMessage typeMessage { get; set; }
+        public TypeMessage TypeMessage { get; set; }
 
-        public string message { get; set; }
+        public string messageData { get; set; }
 
        
 

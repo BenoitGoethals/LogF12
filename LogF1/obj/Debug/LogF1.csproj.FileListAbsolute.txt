@@ -3,3 +3,26 @@ c:\Users\benoit\Documents\Visual Studio 2015\Projects\LogF1\LogF1\bin\Debug\LogF
 c:\Users\benoit\Documents\Visual Studio 2015\Projects\LogF1\LogF1\obj\Debug\LogF1.dll
 c:\Users\benoit\Documents\Visual Studio 2015\Projects\LogF1\LogF1\obj\Debug\LogF1.pdb
 C:\Users\benoit\documents\visual studio 2015\Projects\LogF1\LogF1\obj\Debug\LogF1.csprojResolveAssemblyReference.cache
+C:\Users\benoit\OneDrive\LogF1\LogF1\bin\Debug\LogF1.dll.config
+C:\Users\benoit\OneDrive\LogF1\LogF1\bin\Debug\LogF1.dll
+C:\Users\benoit\OneDrive\LogF1\LogF1\bin\Debug\LogF1.pdb
+C:\Users\benoit\OneDrive\LogF1\LogF1\bin\Debug\JetBrains.Annotations.dll
+C:\Users\benoit\OneDrive\LogF1\LogF1\bin\Debug\Reactive.Streams.dll
+C:\Users\benoit\OneDrive\LogF1\LogF1\bin\Debug\Rx.Contrib.dll
+C:\Users\benoit\OneDrive\LogF1\LogF1\bin\Debug\System.Reactive.Core.dll
+C:\Users\benoit\OneDrive\LogF1\LogF1\bin\Debug\System.Reactive.dll
+C:\Users\benoit\OneDrive\LogF1\LogF1\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\benoit\OneDrive\LogF1\LogF1\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\benoit\OneDrive\LogF1\LogF1\bin\Debug\System.ValueTuple.dll
+C:\Users\benoit\OneDrive\LogF1\LogF1\bin\Debug\JetBrains.Annotations.xml
+C:\Users\benoit\OneDrive\LogF1\LogF1\bin\Debug\Rx.Contrib.xml
+C:\Users\benoit\OneDrive\LogF1\LogF1\bin\Debug\System.Reactive.xml
+C:\Users\benoit\OneDrive\LogF1\LogF1\bin\Debug\System.Reactive.Core.xml
+C:\Users\benoit\OneDrive\LogF1\LogF1\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\benoit\OneDrive\LogF1\LogF1\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Users\benoit\OneDrive\LogF1\LogF1\bin\Debug\System.ValueTuple.xml
+C:\Users\benoit\OneDrive\LogF1\LogF1\obj\Debug\LogF1.csproj.CoreCompileInputs.cache
+C:\Users\benoit\OneDrive\LogF1\LogF1\obj\Debug\LogF1.csproj.CopyComplete
+C:\Users\benoit\OneDrive\LogF1\LogF1\obj\Debug\LogF1.dll
+C:\Users\benoit\OneDrive\LogF1\LogF1\obj\Debug\LogF1.pdb
+C:\Users\benoit\OneDrive\LogF1\LogF1\obj\Debug\LogF1.csprojAssemblyReference.cache

@@ -12,14 +12,14 @@ namespace LogF1.Logger
     {
 
 
-        private Action<Message> addMessage;
-        private Func<Type, TypeMessage, List<string>> messages;
+        private readonly Action<Message> _addMessage;
+        private readonly Func<Type, TypeMessage, List<string>> _messages;
 
 
         public Logger(Action<Message> addMessage, Func<Type, TypeMessage, List<string>> messages)
         {
-            this.addMessage = addMessage;
-            this.messages = messages;
+            this._addMessage = addMessage;
+            this._messages = messages;
         }
 
 
@@ -45,7 +45,7 @@ namespace LogF1.Logger
 
         public List<string> Messages(TypeMessage typeMessage)
         {
-            return messages?.Invoke(typeof (T), typeMessage);
+            return _messages?.Invoke(typeof (T), typeMessage);
         }
 
 
@@ -53,14 +53,14 @@ namespace LogF1.Logger
         {
             Message message = new Message()
             {
-                message = description,
-                typeMessage = typeM,
-                type = (typeof(T))
+                messageData = description,
+                TypeMessage = typeM,
+                Type = (typeof(T))
 
 
 
             };
-            addMessage?.Invoke(message);
+            _addMessage?.Invoke(message);
 
         }
     }

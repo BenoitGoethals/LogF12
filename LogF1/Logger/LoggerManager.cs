@@ -4,51 +4,58 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Reactive;
+using System.Reactive.Linq;
 using System.Resources;
 using System.Runtime.CompilerServices;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Linq;
+using JetBrains.Annotations;
 
 namespace LogF1.Logger
 {
-
-
-   public enum LOGGER_OutputType {
-        XMl,
-        TXT
-
-
-    }
-
-
-
     public static class LoggerManager
     {
-        private readonly static InternalObserver internalObserver = new InternalObserver(WriteXMLAsync);
+
+        public static string Path { get; set; } = "c:/temp/log.xml";
+
+    
+
+        private static readonly ObservableDictionary<string, object> Loggers = new ObservableDictionary<string, object>();
+
+        private static readonly ObservableLoggerPool ObservableLoggerPool = new ObservableLoggerPool();
+
+       
+
+        private static readonly InternalObserver ObserverInternal = new InternalObserver(WriteXmlAsync);
 
         static LoggerManager()
         {
-            observableLoggerPool.Subscribe(internalObserver);
+            ObservableLoggerPool.Subscribe(ObserverInternal);
+            Loggers.ToObservable().Subscribe(onNext: ((s) =>
+            {
+                Console.WriteLine(s);
+            }));
         }
 
         public static  void ChangeOutPut (Action<Message> action)
         {
-             internalObserver.LogWriterTypeAsync = action;
+             ObserverInternal.LogWriterTypeAsync = action;
         }
 
-        public static void ChangeOutPutType(LOGGER_OutputType outputType )
+        public static void ChangeOutPutType(LoggerOutputType outputType )
         {
             switch (outputType)
             {
-                case LOGGER_OutputType.TXT:
-                    internalObserver.LogWriterTypeAsync = WriteTextAsync;
+                case LoggerOutputType.Txt:
+                    ObserverInternal.LogWriterTypeAsync = WriteTextAsync;
                     break;
 
-                case LOGGER_OutputType.XMl:
-                    internalObserver.LogWriterTypeAsync = WriteXMLAsync;
+                case LoggerOutputType.XMl:
+                    ObserverInternal.LogWriterTypeAsync = WriteXmlAsync;
                     break;
             }
         }
@@ -56,7 +63,7 @@ namespace LogF1.Logger
         private static  void WriteTextAsync(Message text)
         {
 
-            byte[] encodedText = Encoding.Unicode.GetBytes(text.message);
+            byte[] encodedText = Encoding.Unicode.GetBytes(text.messageData);
 
             using (FileStream sourceStream = new FileStream(Path,
                 FileMode.Append, FileAccess.Write, FileShare.None,
@@ -67,91 +74,84 @@ namespace LogF1.Logger
         }
 
 
-        private static  void WriteXMLAsync(Message text)
+        private static  void WriteXmlAsync(Message text)
         {
-            XmlWriterSettings settings = new XmlWriterSettings();
-            settings.Async = true;
+            XmlWriterSettings settings = new XmlWriterSettings {Async = true};
             if (!File.Exists(Path))
             {
-                XNamespace empNM = "urn:lst-log:log";
+                XNamespace empNm = "urn:lst-log:log";
 
                 XDocument xDoc = new XDocument(
                             new XDeclaration("1.0", "UTF-16", null),
-                            new XElement(empNM + "LOGS",
+                            new XElement(empNm + "LOGS",
                                 new XElement("log",
                                     new XElement("time",DateTime.Now.ToLongDateString()),
-                                    new XElement(nameof(text.type), text.type.ToString()),
-                                    new XElement(nameof(text.typeMessage), text.typeMessage.ToString()),
-                                    new XElement(nameof(text.message), text.message)
+                                    new XElement(nameof(text.Type), text.Type.ToString()),
+                                    new XElement(nameof(text.TypeMessage), text.TypeMessage.ToString()),
+                                    new XElement(nameof(text.messageData), text.messageData)
                                     )));
-
-                StringWriter sw = new StringWriter();
+             
+                using (StringWriter sw = new StringWriter())
+                {
+                  
                 XmlWriter xWrite = XmlWriter.Create(sw,settings);
                  xWrite.FlushAsync();
                 xDoc.Save(xWrite);
                
                 xWrite.Close();
                 xDoc.Save(Path);
-                
-               
+                }
+
             }
             else
             {
               
-                StringWriter sw = new StringWriter();
-                XmlWriter xWrite = XmlWriter.Create(sw, settings);
+            
                 // Save to Disk
 
                 XElement xEle = XElement.Load(Path);
                 xEle.Add(new XElement("log",
                                       new XElement("time", DateTime.Now.ToLongDateString()),
-                                    new XElement(nameof(text.type), text.type.ToString()),
-                                    new XElement(nameof(text.typeMessage), text.typeMessage.ToString()),
-                                    new XElement(nameof(text.message), text.message)
+                                    new XElement(nameof(text.Type), text.Type.ToString()),
+                                    new XElement(nameof(text.TypeMessage), text.TypeMessage.ToString()),
+                                    new XElement(nameof(text.messageData), text.messageData)
                                     ));
-
-                 xWrite.FlushAsync();
+                using (StringWriter sw = new StringWriter())
+                { 
+                    XmlWriter xWrite = XmlWriter.Create(sw, settings);
+                xWrite.FlushAsync();
                 xEle.Save(xWrite);
             
                 xWrite.Close();
                 xEle.Save(Path);
-
+                }
 
 
             }
         }
 
 
-        public static string Path { get; set; }
-
-        public static IObserver<Message> Observer ;
-        
-        private static Dictionary<string, object> loggers = new Dictionary<string, object>();
-
-        private static ObservableLoggerPool observableLoggerPool = new ObservableLoggerPool();
-
-
         public static ILogger<T> GetInstance<T>() where T : class
         {
                   
-            if (loggers.ContainsKey(typeof(T).ToString()))
-                return (ILogger<T>)loggers[key: typeof(T).ToString()];
+            if (Loggers.ContainsKey(typeof(T).ToString()))
+                return (ILogger<T>)Loggers[key: typeof(T).ToString()];
             ILogger<T> log = new Logger<T>(AddMessage, Messages);
-            loggers.Add(typeof(T).ToString(), (log));
+            Loggers.Add(typeof(T).ToString(), (log));
             return log;
         }
 
 
         private static void AddMessage(Message message)
         {
-            observableLoggerPool.AddMessage(message);
+            ObservableLoggerPool.AddMessage(message);
           
         }
         
 
         private static List<string> Messages(Type type, TypeMessage typeMessage)
         {
-            return observableLoggerPool.Messages(type, typeMessage);
+            return ObservableLoggerPool.Messages(type, typeMessage);
         }
         
 

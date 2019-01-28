@@ -13,7 +13,7 @@ namespace UnitTestProject
         public void TestMethod1()
         {
             LoggerManager.Path = "c:/temp/log_1.txt";
-            LoggerManager.ChangeOutPutType(LOGGER_OutputType.TXT);
+            LoggerManager.ChangeOutPutType(LoggerOutputType.Txt);
             ILogger<ServiceTest> logger=LoggerManager.GetInstance<ServiceTest>();
 
 

@@ -71,6 +71,7 @@
     <Compile Include="Logger\ILogger.cs" />
     <Compile Include="Logger\Logger.cs" />
     <Compile Include="Logger\LoggerManager.cs" />
+    <Compile Include="Logger\LoggerOutputType.cs" />
     <Compile Include="Logger\Message.cs" />
     <Compile Include="Logger\ObserableCollection\Obs.cs" />
     <Compile Include="Logger\ObserableCollection\ObservableDictionary.cs" />

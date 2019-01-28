@@ -9,15 +9,15 @@ namespace UnitTestProject
     public class UnitTest4
     {
         [Fact]
-        public void TestXML()
+        public void TestXml()
         {
             if (!File.Exists(@"C:\temp\Something.xml"))
             {
-                XNamespace empNM = "urn:lst-emp:emp";
+                XNamespace empNm = "urn:lst-emp:emp";
 
                 XDocument xDoc = new XDocument(
                             new XDeclaration("1.0", "UTF-16", null),
-                            new XElement(empNM + "Employees",
+                            new XElement(empNm + "Employees",
                                 new XElement("Employee",
                                     
                                     new XElement("EmpId", "5"),

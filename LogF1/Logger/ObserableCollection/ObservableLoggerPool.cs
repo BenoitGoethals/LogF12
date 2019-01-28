@@ -14,7 +14,7 @@ namespace LogF1.Logger.ObserableCollection
     {
         public ObservableLoggerPool()
         {
-            DictionaryMessages.CollectionChanged += DictionaryMessages_CollectionChanged;
+            _dictionaryMessages.CollectionChanged += DictionaryMessages_CollectionChanged;
         }
 
         private void DictionaryMessages_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
@@ -22,49 +22,46 @@ namespace LogF1.Logger.ObserableCollection
             // TBD
         }
 
-        private List<IObserver<Message>> observers = new List<IObserver<Message>>();
+        private readonly List<IObserver<Message>> _observers = new List<IObserver<Message>>();
 
 
-        private ObservableDictionary<Tuple<Type, TypeMessage>, List<string>> DictionaryMessages = new ObservableDictionary<Tuple<Type, TypeMessage>, List<string>>();
+        private ObservableDictionary<Tuple<Type, TypeMessage>, List<string>> _dictionaryMessages = new ObservableDictionary<Tuple<Type, TypeMessage>, List<string>>();
 
 
         public void AddMessage(Message message)
         {
 
-            var typeMsgLogger = new Tuple<Type, TypeMessage>(message.type, message.typeMessage);
-            if (DictionaryMessages.ContainsKey(key: typeMsgLogger))
+            var typeMsgLogger = new Tuple<Type, TypeMessage>(message.Type, message.TypeMessage);
+            if (_dictionaryMessages.ContainsKey(key: typeMsgLogger))
             {
-                DictionaryMessages[typeMsgLogger]?.Add(message.message);
+                _dictionaryMessages[typeMsgLogger]?.Add(message.messageData);
             }
             else
             {
-                DictionaryMessages.Add(typeMsgLogger, new List<string>() { message.message });
+                _dictionaryMessages.Add(typeMsgLogger, new List<string>() { message.messageData });
             }
 
 
-            observers.ForEach(t => t.OnNext(message));
+            _observers.ForEach(t => t.OnNext(message));
 
         }
 
         public List<string> Messages(Type type, TypeMessage typeMessage)
         {
             var typeMsgLogger = new Tuple<Type, TypeMessage>(type, typeMessage);
-            if (DictionaryMessages.ContainsKey(key: typeMsgLogger))
+            if (_dictionaryMessages.ContainsKey(key: typeMsgLogger))
             {
-                return new List<string>(DictionaryMessages[typeMsgLogger].ToArray());
+                return new List<string>(_dictionaryMessages[typeMsgLogger].ToArray());
             }
             return null;
         }
 
         public IDisposable Subscribe(IObserver<Message> observer)
         {
-            observers.Add(observer);
+            _observers.Add(observer);
             return Disposable.Empty; ;
         }
 
-        public void Dispose()
-        {
-            DictionaryMessages = null;
-        }
+        public void Dispose() => _dictionaryMessages = null;
     }
 }
